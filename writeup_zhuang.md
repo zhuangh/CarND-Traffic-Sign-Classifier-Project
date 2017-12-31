@@ -9,12 +9,20 @@
 ```sh
 jupyter notebook Traffic_Sign_Classifier.ipynb
 ```
-```sh
-docker pull udacity/carnd-term1-starter-kit
-```
+
+### AWS EC2 GPU g2.x2large instance. Use udacity-carnd.
+
+### Install docker-ce, nvidia-docker2
+#### Pull a docker container with tensorflow gpu and python3
 
 ```sh
-docker run -it --rm -p 8888:8888 -v `pwd`:/src udacity/carnd-term1-starter-kit Traffic_Sign_Classifier.ipynb 
+#sudo docker pull tensorflow/tensorflow:latest-gpu-py3
+sudo docker build -t tf_py3_cv2 -f Dockerfile.gpu .
+```
+#### Launch this workspace
+```sh
+#sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  tensorflow/tensorflow:latest-gpu-py3
+sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  ttf_py3_cv2
 ```
 
 ---
