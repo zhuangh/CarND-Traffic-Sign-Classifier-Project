@@ -17,12 +17,14 @@ jupyter notebook Traffic_Sign_Classifier.ipynb
 
 ```sh
 #sudo docker pull tensorflow/tensorflow:latest-gpu-py3
-sudo docker build -t tf_py3_cv2 -f Dockerfile.gpu .
+docker pull udacity/carnd-term1-starter-kit # for cpu
+sudo docker build -t tf_py3_cv2 -f Dockerfile.gpu . #for gpu, build a docker image locally
 ```
 #### Launch this workspace
 ```sh
 #sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  tensorflow/tensorflow:latest-gpu-py3
-sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  ttf_py3_cv2
+sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  ttf_py3_cv2 #gpu
+docker run -it --rm -p 8888:8888 -v `pwd`:/src udacity/carnd-term1-starter-kit # cpu
 ```
 
 ---
