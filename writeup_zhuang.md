@@ -50,6 +50,9 @@ The goals / steps of this project are the following:
 [image6]: ./examples/placeholder.png "Traffic Sign 3"
 [image7]: ./examples/placeholder.png "Traffic Sign 4"
 [image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image_train]: ./reports/train.png "Train"
+[image_test]: ./reports/test.png "Test"
+[image_valid]: ./reports/valid.png "Valid"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -68,17 +71,26 @@ You're reading it! and here is a link to my [project code](https://github.com/ud
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is 34799.
+* The size of the validation set is 4410 .
+* The size of test set is 12630.
+* The shape of a traffic sign image is (32, 32, 3).
+* The number of unique classes/labels in the data set is 43.
+
+
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. It is a bar chart showing the data distributions, where x-axis is the the indices of labels and y-axis represents the size of samples for one category/label.
 
-![alt text][image1]
+Train Set:
+![Train Set][image_train]
+
+Test Set:
+![Test Set][image_test]
+
+Validation Set
+![Validation Set][image_valid]
 
 ### Design and Test a Model Architecture
 
@@ -90,7 +102,7 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 ![alt text][image2]
 
-As a last step, I normalized the image data because ...
+As a last step, I normalized the image data because zero-mean data will provide better conditioned distribution for numerical optimization during the training.
 
 I decided to generate additional data because ... 
 
@@ -144,6 +156,12 @@ If a well known architecture was chosen:
 * Why did you believe it would be relevant to the traffic sign application?
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
  
+
+I increase the filter depths for the convolution layers. 
+The dropout is set to 0.7.
+
+It improved the accuracy of test set from 89% to 93%. 
+
 
 ### Test a Model on New Images
 
