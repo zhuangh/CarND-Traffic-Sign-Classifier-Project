@@ -83,7 +83,7 @@ sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  ttf_py3_cv2
 [aug_set_dist]: ./reports/aug_set_dist.png
 [perm]: ./reports/perm.png
 [lenet]: ./reports/lenet.png
-
+[confusion_matrix]: ./reports/confusion_matrix.png
 
 ### Rubric Points
 #### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -254,9 +254,9 @@ My final model consisted of the following layers:
 | RELU					| 												|
 | Max pooling	      	| 2x2 stride, valid padding, outputs 5x5x40     |
 | Fully connected		| 100x240      									|
-| Dropout               | rate = 0.5                                    |
+| Dropout               | keep prob = 0.5                                    |
 | Fully connected		| 240x84      									|
-| Dropout               | rate = 0.5                                    |
+| Dropout               | keep prob = 0.5                                    |
 | Softmax		        | 84x43      									|
 
 
@@ -267,6 +267,7 @@ To train the model, I used an Adam optimizer discussed in the lecture.
 The batch size is 128.
 The number of epochs is 51. 
 The learning rate is 0.0008.
+The Keep probablity of dropout is 50.0%.
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
@@ -275,6 +276,7 @@ My final model results were:
 * training set accuracy of 99.98%.
 * validation set accuracy of 96.12%.
 * test set accuracy of 95.20%.
+* new signs accuracy of 100.00% (80% without augumented train sets)
 
 Here are the configuration and the accuracy performance I record along the trials.
 
@@ -282,10 +284,10 @@ Here are the configuration and the accuracy performance I record along the trial
 
 | Configuration			        |     Performance        					| 
 |:---------------------:|:---------------------------------------------:|
-| Dropout rate = 0.7 and Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
-| Dropout rate = 0.5 and Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
-| Dropout rate = 0.5 and Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
-| Dropout rate = 0.5 and Normalized Grayscale Augemented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
+| Dropout's keep prob = 0.7 and Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
+| Dropout's keep prob = 0.5 and Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
+| Dropout's keep prob = 0.5 and Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
+| Dropout's keep prob = 0.5 and Normalized Grayscale Augemented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
 
 The training performance figure is attached.
 ![alt text][perm]
@@ -301,7 +303,7 @@ Answer: The accuracy is not high enough, only around 89% for the test set.
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
 Answer: I increased the filter depth to capture more pattern information from the inputs. I added dropout for the fully-connected layers to avoid the overfitting.
 * Which parameters were tuned? How were they adjusted and why?
-Answer: Dropout rate. I set 0.7 then decreased to 0.5. Check the Configuration and Performance Table table I added above. 
+Answer: Dropout's keep probablity. I set 0.7 then decreased to 0.5. Check the Configuration and Performance Table table I added above. 
 
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 Answer: In terms of achitecture, I added two dropout layers after fully-connected layers respectively. 
@@ -363,3 +365,26 @@ Following figures should the top 5 softmax probablities.
 ![alt text][new4]
 
 ![alt text][new5]
+
+The confidence of each prediction is pretty high.
+
+
+## Summary
+
+Based on the test set. 
+
+The Precision of the model is 94%.
+
+The Recall Score of the model 95%.
+
+The confusion matrix of the model 
+
+![alt text][confusion_matrix]
+
+## Further Steps:
+
+* Add more diversity samples into the train set. Due to the time constraint, I only added the data with different scaling factors. Actually, we can rotate the images, use different blur versions, and so on. 
+
+* Train the IJCNN'11 [paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) mentioned.
+
+* Visualization of the neural network's state. 
