@@ -373,9 +373,9 @@ The confidence of each prediction is pretty high.
 
 Based on the test set. 
 
-The Precision of the model is 94%.
+The Precision of the model is 95.2%.
 
-The Recall Score of the model 95%.
+The Recall Score of the model 95.2%.
 
 The confusion matrix of the model 
 
