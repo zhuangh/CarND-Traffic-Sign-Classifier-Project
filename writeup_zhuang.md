@@ -179,16 +179,19 @@ Train Accuracy = 0.99747
 Validation Accuracy = 0.96054
 Test Accuracy = 0.94125
 
-?Augement 
-Train Accuracy = 0.99544
-Validation Accuracy = 0.95374
-Test Accuracy = 0.93547
+
 
 Normalized the data set: 
 Train Accuracy = 0.99974
 Validation Accuracy = 0.97483
 Test Accuracy = 0.95408
 Model saved
+
+Augement 
+Train Accuracy = 0.99976
+Validation Accuracy = 0.96122
+Test Accuracy = 0.95202
+
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
