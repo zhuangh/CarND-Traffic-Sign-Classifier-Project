@@ -53,6 +53,13 @@ The goals / steps of this project are the following:
 [image_train]: ./reports/train.png "Train"
 [image_test]: ./reports/test.png "Test"
 [image_valid]: ./reports/valid.png "Valid"
+[new_data_speed]: ./new_signs/01_speed_30.jpg "New Speed"
+[new_data_yield]: ./new_signs/13_yield.jpg "New Yield"
+[new_data_priority]: ./new_signs/12_priority.jpg "New Priority"
+[new_data_stop]: ./new_signs/14_stop.jpg "New Stop"
+[new_data_no_ent]: ./new_signs/17_no_ent.jpg "New No Ent"
+[new_data_keep_right]: ./new_signs/38_keep_right.jpg "New Keep Right"
+[top7]: ./reports/top7.png "Priority Result"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -122,15 +129,18 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x1 Gray image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x10 	|
+| RELU					| 												|
+| Max pooling	      	| 2x2 stride, valid padding, outputs 14x14x10   |
+| Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x40 	|
+| RELU					| 												|
+| Max pooling	      	| 2x2 stride, valid padding, outputs 5x5x40     |
+| Fully connected		| 100x240      									|
+| Dropout               | rate = 0.5                                    |
+| Fully connected		| 240x84      									|
+| Dropout               | rate = 0.5                                    |
+| Softmax		        | 84x43      									|
+
 
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
@@ -192,10 +202,17 @@ The dropout is set to 0.7. It improved the accuracy of test set from 89% to 95%.
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
 
-The first image might be difficult to classify because ...
+![alt text][new_data_speed] ![alt text][new_data_yield] ![alt text][new_data_priority] ![alt text][new_data_stop] ![alt text][new_data_no_ent] ![alt text][new_data_keep_right] 
+
+
+This is wrong prediction when we use unaugmented data set. 
+![alt text][top7].
+
+After adding the generated data. 
+
+
+ 
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
 
