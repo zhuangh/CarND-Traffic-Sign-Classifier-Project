@@ -60,6 +60,14 @@ The goals / steps of this project are the following:
 [new_data_no_ent]: ./new_signs/17_no_ent.jpg "New No Ent"
 [new_data_keep_right]: ./new_signs/38_keep_right.jpg "New Keep Right"
 [top7]: ./reports/top7.png "Priority Result"
+[all_news]: ./reports/all_news.png
+[top7_new]: ./reports/top7_new.png "Priority Result"
+[top1]: ./reports/top1.png 
+[top2]: ./reports/top2.png 
+[top3]: ./reports/top3.png 
+[top4]: ./reports/top4.png 
+[top5]: ./reports/top5.png 
+[top6]: ./reports/top6.png 
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -109,7 +117,10 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 ![alt text][image2]
 
-As a last step, I normalized the image data because zero-mean data will provide better conditioned distribution for numerical optimization during the training.
+As a last step, I normalized the image data because zero-mean data will provide better conditioned distribution for numerical optimization during the training. The equation is 
+```sh
+gray_image_normalized = (gray_image - 128)/ 128
+```
 
 I decided to generate additional data because ... 
 
@@ -168,14 +179,28 @@ Train Accuracy = 0.99747
 Validation Accuracy = 0.96054
 Test Accuracy = 0.94125
 
+?Augement 
+Train Accuracy = 0.99544
+Validation Accuracy = 0.95374
+Test Accuracy = 0.93547
+
+Normalized the data set: 
+Train Accuracy = 0.99974
+Validation Accuracy = 0.97483
+Test Accuracy = 0.95408
+Model saved
+
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
+
 LeNet is choson since the lecture mentioned it has pretty good performance in this kind of task.
 
 * What were some problems with the initial architecture?
+
 The accuracy is not high enough, only around 89% for the test set.
 
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+
 I increased the filter depth to capture more pattern information from the inputs.
 
 I added dropout for the fully-connected layers to avoid the overfitting.
@@ -203,47 +228,43 @@ The dropout is set to 0.7. It improved the accuracy of test set from 89% to 95%.
 Here are five German traffic signs that I found on the web:
 
 
-![alt text][new_data_speed] ![alt text][new_data_yield] ![alt text][new_data_priority] ![alt text][new_data_stop] ![alt text][new_data_no_ent] ![alt text][new_data_keep_right] 
 
+![alt text][all_news]
 
 This is wrong prediction when we use unaugmented data set. 
 ![alt text][top7].
 
 After adding the generated data. 
-
+![alt text][top7_new].
 
  
 
-#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set 
 
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Keep          		| Stop sign   									| 
+| Priority    			| Priority   									|
+| Stop					| Stop						    				|
+| Yield	      		    | Yield	    					 				|
+| No Entry			    | No Entry     				        			|
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
 
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+![alt text][top1]
 
 
-For the second image ... 
+![alt text][top7]
 
+![alt text][top2]
 
+![alt text][top6]
+
+![alt text][top3]
+
+![alt text][top7_new]
