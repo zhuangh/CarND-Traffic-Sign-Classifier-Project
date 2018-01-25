@@ -1,34 +1,6 @@
 # **Traffic Sign Recognition** 
 
-## Writeup
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
-
-## Usage
-```sh
-jupyter notebook Traffic_Sign_Classifier.ipynb
-```
-
-### AWS EC2 GPU g2.x2large instance. Use udacity-carnd.
-
-### Install docker-ce, nvidia-docker2
-#### Pull a docker container with tensorflow gpu and python3
-
-```sh
-#sudo docker pull tensorflow/tensorflow:latest-gpu-py3
-docker pull udacity/carnd-term1-starter-kit # for cpu
-sudo docker build -t tf_py3_cv2 -f Dockerfile.gpu . #for gpu, build a docker image locally
-```
-#### Launch this workspace
-```sh
-#sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  tensorflow/tensorflow:latest-gpu-py3
-sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  ttf_py3_cv2 #gpu
-docker run -it --rm -p 8888:8888 -v `pwd`:/src udacity/carnd-term1-starter-kit # cpu
-```
-
 ---
-
 **Build a Traffic Sign Recognition Project**
 
 The goals / steps of this project are the following:
@@ -39,6 +11,38 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
+---
+
+## Usage of [my code](https://github.com/zhuangh/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+
+```sh
+jupyter notebook Traffic_Sign_Classifier.ipynb
+```
+
+#### Pull a docker container with tensorflow gpu and python3
+CPU: use udacity-carnd. 
+```sh
+docker pull udacity/carnd-term1-starter-kit # for cpu
+```
+
+For the use of GPU, AWS EC2 GPU g2.x2large instance can be used. Install docker-ce, nvidia-docker2 on the instance. Plus, I need to build a docker image locally to support cv2, etc.
+
+```sh
+sudo docker build -t tf_py3_cv2 -f Dockerfile.gpu .
+```
+
+#### Launch this workspace
+CPU only
+```sh
+docker run -it --rm -p 8888:8888 -v `pwd`:/src udacity/carnd-term1-starter-kit
+```
+
+GPU 
+```sh
+sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  ttf_py3_cv2 
+```
+
+---
 
 [//]: # (Image References)
 
@@ -62,22 +66,33 @@ The goals / steps of this project are the following:
 [top7]: ./reports/top7.png "Priority Result"
 [all_news]: ./reports/all_news.png
 [top7_new]: ./reports/top7_new.png "Priority Result"
-[top1]: ./reports/top1.png 
-[top2]: ./reports/top2.png 
-[top3]: ./reports/top3.png 
-[top4]: ./reports/top4.png 
-[top5]: ./reports/top5.png 
-[top6]: ./reports/top6.png 
+[new1]: ./reports/new1.png 
+[new2]: ./reports/new2.png 
+[new3]: ./reports/new3.png 
+[new4]: ./reports/new4.png 
+[new5]: ./reports/new5.png 
+[new2_new]: ./reports/new2_new.png 
+[rgb_set]: ./reports/rgb_set.png "RGB Images"
+[gray_sets]: ./reports/gray_sets.png "Gray Images"
+[norm_set]: ./reports/norm_set.png "Norm Images"
+[scaled]: ./reports/scaled.png 
+[scaled2]: ./reports/scaled2.png
+[scaled3]: ./reports/scaled3.png
+[scaled4]: ./reports/scaled4.png
+[aug_set_dist]: ./reports/aug_set_dist.png
+[perm]: ./reports/perm.png
+[lenet]: ./reports/lenet.png
 
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+
+### Rubric Points
+#### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
 ### Writeup / README
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/zhuangh/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+Here is a link to my [project code](https://github.com/zhuangh/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
@@ -111,26 +126,117 @@ Validation Set
 
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because the color does not help the sign recogintion based on my experiment.
+As a first step, I decided to convert the images to grayscale because the color does not help the sign recogintion based on my experiment. Here the corresponding examples of traffic sign images before and after grayscaling.
+![alt text][rgb_set]
 
-Here is an example of a traffic sign image before and after grayscaling.
+The grayscaled images are shown as follows, 
 
-![alt text][image2]
+![alt text][gray_sets]
 
 As a last step, I normalized the image data because zero-mean data will provide better conditioned distribution for numerical optimization during the training. The equation is 
 ```sh
 gray_image_normalized = (gray_image - 128)/ 128
 ```
+The normalized images are show as follows
+![alt text][norm_set]
 
-I decided to generate additional data because ... 
 
-To add more data to the the data set, I used the following techniques because ... 
 
-Here is an example of an original image and an augmented image:
 
-![alt text][image3]
+I decided to generate additional data because I found an mispredicted example from the new signs I downloaded from the website. Due to the time constraint of this project, I used only the scaling and cropping method to generate extra data to help recognize this kind of images. Here the examples of original images and the augmented images:
+![alt text][scaled] 
+![alt text][scaled2]
+![alt text][scaled3]
+![alt text][scaled4]
 
-The difference between the original data set and the augmented data set is the following ... 
+Augmented train set has the sample distribution as
+![alt text][aug_set_dist]
+label  0 (0, b'Speed limit (20km/h)')  sample count  180
+label  1 (1, b'Speed limit (30km/h)')  sample count  1980
+label  2 (2, b'Speed limit (50km/h)')  sample count  2010
+label  3 (3, b'Speed limit (60km/h)')  sample count  1260
+label  4 (4, b'Speed limit (70km/h)')  sample count  1770
+label  5 (5, b'Speed limit (80km/h)')  sample count  1650
+label  6 (6, b'End of speed limit (')  sample count  360
+label  7 (7, b'Speed limit (100km/h')  sample count  1290
+label  8 (8, b'Speed limit (120km/h')  sample count  1260
+label  9 (9, b'No passing')  sample count  1320
+label  10 (10, b'No passing for vehic')  sample count  1800
+label  11 (11, b'Right-of-way at the ')  sample count  1170
+label  12 (12, b'Priority road')  sample count  1890
+label  13 (13, b'Yield')  sample count  1920
+label  14 (14, b'Stop')  sample count  690
+label  15 (15, b'No vehicles')  sample count  540
+label  16 (16, b'Vehicles over 3.5 me')  sample count  360
+label  17 (17, b'No entry')  sample count  990
+label  18 (18, b'General caution')  sample count  1080
+label  19 (19, b'Dangerous curve to t')  sample count  180
+label  20 (20, b'Dangerous curve to t')  sample count  300
+label  21 (21, b'Double curve')  sample count  270
+label  22 (22, b'Bumpy road')  sample count  330
+label  23 (23, b'Slippery road')  sample count  450
+label  24 (24, b'Road narrows on the ')  sample count  240
+label  25 (25, b'Road work')  sample count  1350
+label  26 (26, b'Traffic signals')  sample count  540
+label  27 (27, b'Pedestrians')  sample count  210
+label  28 (28, b'Children crossing')  sample count  480
+label  29 (29, b'Bicycles crossing')  sample count  240
+label  30 (30, b'Beware of ice/snow')  sample count  390
+label  31 (31, b'Wild animals crossin')  sample count  690
+label  32 (32, b'End of all speed and')  sample count  210
+label  33 (33, b'Turn right ahead')  sample count  599
+label  34 (34, b'Turn left ahead')  sample count  360
+label  35 (35, b'Ahead only')  sample count  1080
+label  36 (36, b'Go straight or right')  sample count  330
+label  37 (37, b'Go straight or left')  sample count  180
+label  38 (38, b'Keep right')  sample count  1860
+label  39 (39, b'Keep left')  sample count  270
+label  40 (40, b'Roundabout mandatory')  sample count  300
+label  41 (41, b'End of no passing')  sample count  210
+label  42 (42, b'End of no passing by')  sample count  210
+label  0 (0, b'Speed limit (20km/h)')  sample count  900
+label  1 (1, b'Speed limit (30km/h)')  sample count  9900
+label  2 (2, b'Speed limit (50km/h)')  sample count  10050
+label  3 (3, b'Speed limit (60km/h)')  sample count  6300
+label  4 (4, b'Speed limit (70km/h)')  sample count  8850
+label  5 (5, b'Speed limit (80km/h)')  sample count  8250
+label  6 (6, b'End of speed limit (')  sample count  1800
+label  7 (7, b'Speed limit (100km/h')  sample count  6450
+label  8 (8, b'Speed limit (120km/h')  sample count  6300
+label  9 (9, b'No passing')  sample count  6600
+label  10 (10, b'No passing for vehic')  sample count  9000
+label  11 (11, b'Right-of-way at the ')  sample count  5850
+label  12 (12, b'Priority road')  sample count  9450
+label  13 (13, b'Yield')  sample count  9600
+label  14 (14, b'Stop')  sample count  3450
+label  15 (15, b'No vehicles')  sample count  2700
+label  16 (16, b'Vehicles over 3.5 me')  sample count  1800
+label  17 (17, b'No entry')  sample count  4950
+label  18 (18, b'General caution')  sample count  5400
+label  19 (19, b'Dangerous curve to t')  sample count  900
+label  20 (20, b'Dangerous curve to t')  sample count  1500
+label  21 (21, b'Double curve')  sample count  1350
+label  22 (22, b'Bumpy road')  sample count  1650
+label  23 (23, b'Slippery road')  sample count  2250
+label  24 (24, b'Road narrows on the ')  sample count  1200
+label  25 (25, b'Road work')  sample count  6750
+label  26 (26, b'Traffic signals')  sample count  2700
+label  27 (27, b'Pedestrians')  sample count  1050
+label  28 (28, b'Children crossing')  sample count  2400
+label  29 (29, b'Bicycles crossing')  sample count  1200
+label  30 (30, b'Beware of ice/snow')  sample count  1950
+label  31 (31, b'Wild animals crossin')  sample count  3450
+label  32 (32, b'End of all speed and')  sample count  1050
+label  33 (33, b'Turn right ahead')  sample count  2995
+label  34 (34, b'Turn left ahead')  sample count  1800
+label  35 (35, b'Ahead only')  sample count  5400
+label  36 (36, b'Go straight or right')  sample count  1650
+label  37 (37, b'Go straight or left')  sample count  900
+label  38 (38, b'Keep right')  sample count  9300
+label  39 (39, b'Keep left')  sample count  1350
+label  40 (40, b'Roundabout mandatory')  sample count  1500
+label  41 (41, b'End of no passing')  sample count  1050
+label  42 (42, b'End of no passing by')  sample count  1050
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -165,63 +271,40 @@ The learning rate is 0.0008.
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 99.98%.
+* validation set accuracy of 96.12%.
+* test set accuracy of 95.20%.
 
-0.7
-Train Accuracy = 0.99833
-Validation Accuracy = 0.94467
-Test Accuracy = 0.92835
+Here are the configuration and the accuracy performance I record along the trials.
 
-0.5
-Train Accuracy = 0.99747
-Validation Accuracy = 0.96054
-Test Accuracy = 0.94125
+* Configuration and Performance Table
 
+| Configuration			        |     Performance        					| 
+|:---------------------:|:---------------------------------------------:|
+| Dropout rate = 0.7 and Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
+| Dropout rate = 0.5 and Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
+| Dropout rate = 0.5 and Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
+| Dropout rate = 0.5 and Normalized Grayscale Augemented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
 
-
-Normalized the data set: 
-Train Accuracy = 0.99974
-Validation Accuracy = 0.97483
-Test Accuracy = 0.95408
-Model saved
-
-Augement 
-Train Accuracy = 0.99976
-Validation Accuracy = 0.96122
-Test Accuracy = 0.95202
-
+The training performance figure is attached.
+![alt text][perm]
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
-
-LeNet is choson since the lecture mentioned it has pretty good performance in this kind of task.
+Answer: I started with LeNet since the lecture mentioned it has pretty good performance in this kind of task.
+![alt text][lenet]
 
 * What were some problems with the initial architecture?
-
-The accuracy is not high enough, only around 89% for the test set.
+Answer: The accuracy is not high enough, only around 89% for the test set.
 
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-
-I increased the filter depth to capture more pattern information from the inputs.
-
-I added dropout for the fully-connected layers to avoid the overfitting.
-
+Answer: I increased the filter depth to capture more pattern information from the inputs. I added dropout for the fully-connected layers to avoid the overfitting.
 * Which parameters were tuned? How were they adjusted and why?
-
-Dropout rate. I set 0.9 then decreased to 0.7. 
-
+Answer: Dropout rate. I set 0.7 then decreased to 0.5. Check the Configuration and Performance Table table I added above. 
 
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+Answer: In terms of achitecture, I added two dropout layers after fully-connected layers respectively. 
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
-I increase the filter depths for the convolution layers. 
-The dropout is set to 0.7. It improved the accuracy of test set from 89% to 95%. 
 
 
 ### Test a Model on New Images
@@ -235,16 +318,16 @@ Here are five German traffic signs that I found on the web:
 ![alt text][all_news]
 
 This is wrong prediction when we use unaugmented data set. 
-![alt text][top7].
+![alt text][new2].
 
 After adding the generated data. 
-![alt text][top7_new].
+![alt text][new2_new].
 
  
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set 
 
-Here are the results of the prediction:
+Here are the results of the prediction with augumented data sets:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -255,19 +338,27 @@ Here are the results of the prediction:
 | No Entry			    | No Entry     				        			|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+Without augumented data, the model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+| Image			        |     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Keep          		| Stop sign   									| 
+| Priority    			|  Children crossing  									|
+| Stop					| Stop						    				|
+| Yield	      		    | Yield	    					 				|
+| No Entry			    | No Entry     				        			|
+
+This is the reason why I added scaled images as augumented data samples to help the deep neural network to get trained.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
-![alt text][top1]
+Following figures should the top 5 softmax probablities.
 
+![alt text][new1]
 
-![alt text][top7]
+![alt text][new2]
 
-![alt text][top2]
+![alt text][new3]
 
-![alt text][top6]
+![alt text][new4]
 
-![alt text][top3]
-
-![alt text][top7_new]
+![alt text][new5]
