@@ -206,9 +206,9 @@ The keep probability of dropout is 50.0%.
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. 
 
 My final model results were:
-* training set accuracy of 99.98%.
-* validation set accuracy of 96.12%.
-* test set accuracy of 95.20%.
+* training set accuracy of 99.9%.
+* validation set accuracy of 95.7%.
+* test set accuracy of 94.0%.
 * new signs accuracy of 100.00% (80% without augmented train sets)
 
 
@@ -245,7 +245,7 @@ Answer: I tuned the Dropout's keep probability. I set 0.7 then decreased it to 0
 | Dropout's keep prob=0.7 + Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
 | Dropout's keep prob=0.5 + Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
 | Dropout's keep prob=0.5 + Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
-| Dropout's keep prob=0.5 + Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
+| Dropout's keep prob=0.5 + Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99941, Validation Accuracy = 0.95669, Test Accuracy = 0.93975|
 
 The training performance figure is attached.
 
@@ -321,9 +321,9 @@ The confidence of each prediction is pretty high.
 
 Based on the test set. 
 
-The Precision of the model is 93.8%.
+The Precision of the model is 91%.
 
-The Recall Score of the model 95.2%.
+The Recall Score of the model 94%.
 
 The confusion matrix of the model 
 
