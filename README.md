@@ -145,12 +145,17 @@ The normalized images are show as follows
 
 
 I decided to generate additional data because I found an mispredicted example from the new signs I downloaded from the website. Due to the time constraint of this project, I used only the scaling and cropping method to generate extra data to help recognize this kind of images. Here the examples of original images and the augmented images:
+
 ![alt text][scaled] 
+
 ![alt text][scaled2]
+
 ![alt text][scaled3]
+
 ![alt text][scaled4]
 
 Augmented train set has the sample distribution as
+
 ![alt text][aug_set_dist] 
 
 
