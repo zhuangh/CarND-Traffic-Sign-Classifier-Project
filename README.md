@@ -114,13 +114,16 @@ signs data set:
 
 Here is an exploratory visualization of the data set. It is a bar chart showing the data distributions, where x-axis is the indices of labels and y-axis represents the size of samples for one category/label.
 
-Train Set:
+Train Set Distribution
+
 ![Train Set][image_train]
 
-Test Set:
+Test Set Distribution
+
 ![Test Set][image_test]
 
-Validation Set
+Validation Set Distribution
+
 ![Validation Set][image_valid]
 
 ### Design and Test a Model Architecture
@@ -128,6 +131,7 @@ Validation Set
 #### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
 As a first step, I decided to convert the images to grayscale because the color does not help the sign recognition based on my experiment. Here the corresponding examples of traffic sign images before and after grayscaling.
+
 ![alt text][rgb_set]
 
 The corresponding grayscale images are shown as follows, 
@@ -139,6 +143,7 @@ As a last step, I normalized the image data because zero-mean data will provide 
 gray_image_normalized = (gray_image - 128)/ 128
 ```
 The normalized images are shown as follows
+
 ![alt text][norm_set]
 
 
@@ -213,6 +218,8 @@ Here are the configuration and the accuracy performance I record the trials.
 | Dropout's keep prob = 0.5 and Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
 
 The training performance figure is attached.
+
+
 ![alt text][perm]
 
 #### Iterative approach was chosen
