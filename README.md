@@ -301,7 +301,7 @@ Following figures should the top 5 softmax probabilities.
 
 ![alt text][new1]
 
-![alt text][new2]
+![alt text][new2_new]
 
 ![alt text][new3]
 
