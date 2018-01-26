@@ -224,6 +224,7 @@ The training performance figure is attached.
 
 ![alt text][perm]
 
+
 #### Iterative approach was chosen
 
 * What was the first architecture that was tried and why was it chosen?
