@@ -215,10 +215,10 @@ Here are the configuration and the accuracy performance I record the trials.
 
 | Configuration			        |     Performance        					| 
 |:---------------------:|:---------------------------------------------:|
-| Dropout's keep prob = 0.7 and Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
-| Dropout's keep prob = 0.5 and Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
-| Dropout's keep prob = 0.5 and Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
-| Dropout's keep prob = 0.5 and Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
+| Dropout's keep prob = 0.7 + Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
+| Dropout's keep prob = 0.5 + Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
+| Dropout's keep prob = 0.5 + Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
+| Dropout's keep prob = 0.5 + Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
 
 The training performance figure is attached.
 
@@ -282,13 +282,15 @@ Here are the results of the prediction with augmented data sets:
 
 
 Without augmented data, the model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Keep          		| Stop sign   									| 
-| Priority    			|  Children crossing  									|
+| Priority    			|  Children crossing  							|
 | Stop					| Stop						    				|
 | Yield	      		    | Yield	    					 				|
 | No Entry			    | No Entry     				        			|
+
 
 This is the reason why I added scaled images as augmented data samples to help the deep neural network to get trained.
 
