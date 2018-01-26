@@ -182,7 +182,7 @@ My final model consisted of the following layers:
 | Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x40 	|
 | RELU					| 												|
 | Max pooling	      	| 2x2 stride, valid padding, outputs 5x5x40     |
-| Fully connected		| 100x240      									|
+| Fully connected		| 1000x240      									|
 | Dropout               | keep prob = 0.5                                    |
 | Fully connected		| 240x84      									|
 | Dropout               | keep prob = 0.5                                    |
@@ -203,7 +203,7 @@ The learning rate is 0.0008.
 The keep probability of dropout is 50.0%.
 
 
-#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. 
 
 My final model results were:
 * training set accuracy of 99.98%.
@@ -211,20 +211,7 @@ My final model results were:
 * test set accuracy of 95.20%.
 * new signs accuracy of 100.00% (80% without augmented train sets)
 
-Here are the configuration and the accuracy performance I record the trials.
 
-* Configuration and Performance Table
-
-| Configuration			        |     Performance        					| 
-|:---------------------:|:---------------------------------------------:|
-| Dropout's keep prob=0.7 + Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
-| Dropout's keep prob=0.5 + Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
-| Dropout's keep prob=0.5 + Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
-| Dropout's keep prob=0.5 + Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
-
-The training performance figure is attached.
-
-![alt text][perm]
 
 
 #### Iterative approach was chosen
@@ -249,8 +236,21 @@ I added dropout for the fully-connected layers to avoid the overfitting.
 
 * Which parameters were tuned? How were they adjusted and why?
 
-Answer: I tuned the Dropout's keep probability. I set 0.7 then decreased it to 0.5. Check the Configuration and Performance Table table I added above. 
- 
+Answer: I tuned the Dropout's keep probability. I set 0.7 then decreased it to 0.5. Check *the Configuration and Performance Table* added below. 
+
+*Configuration and Performance Table*
+
+| Configuration			        |     Performance        					| 
+|:---------------------:|:---------------------------------------------:|
+| Dropout's keep prob=0.7 + Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
+| Dropout's keep prob=0.5 + Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
+| Dropout's keep prob=0.5 + Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
+| Dropout's keep prob=0.5 + Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
+
+The training performance figure is attached.
+
+![alt text][perm]
+
 
 
 ### Test a Model on New Images
@@ -261,11 +261,12 @@ Here are five German traffic signs that I found on the web:
 
 ![alt text][all_news]
 
-This is the wrong prediction without the augmented data set. 
+
+For example, the following image has the wrong prediction from the neural network trained without the augmented data set. This is actually a priority road sign, which is scaled and cropped. It fooled the neural network. 
 
 ![alt text|140%][new2]
 
-After adding the generated data. 
+After adding the generated data with scaling images based on the original train set, the prediction is right then.
 
 ![alt text][new2_new]
 
@@ -283,8 +284,9 @@ Here are the results of the prediction with augmented data sets:
 | Yield	      		    | Yield	    					 				|
 | No Entry			    | No Entry     				        			|
 
+The result of those new signs is better than the accuracy of test set.
 
-Without augmented data, the model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
+Note that without augmented data, the model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. 
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
@@ -296,6 +298,7 @@ Without augmented data, the model was able to correctly guess 4 of the 5 traffic
 
 
 This is the reason why I added scaled images as augmented data samples to help the deep neural network to get trained.
+
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
@@ -328,7 +331,7 @@ The confusion matrix of the model
 
 ## Further Steps:
 
-* Add more diversity samples to the train set. Due to the time constraint, I only added the data with different scaling factors. Actually, we can rotate the images, use different blur versions, and so on. 
+* Add more diverse samples to the train set. Due to the time constraint, I only added the data with different scaling factors. Actually, we can rotate the images, use different blur versions, and so on. 
 
 * Balance the sample data distributions in the train set.
 
