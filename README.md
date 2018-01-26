@@ -148,10 +148,7 @@ The normalized images are shown as follows
 
 ![alt text][norm_set]
 
-
-
-
-I decided to generate additional data because I found a mispredicted example from the new signs I downloaded from the website. Due to the time constraint of this project, I used only the scaling and cropping method to generate extra data to help recognize this kind of images. Here the examples of original images and the augmented images:
+I decided to generate additional data because I found one misprediction among the 5 new signs from the website is due to the scaling issue. Due to the time constraint of this project, I used only the scaling and cropping method to generate extra data samples to help recognize this kind of images. Here the examples of original images and the augmented images:
 
 ![alt text][scaled] 
 
