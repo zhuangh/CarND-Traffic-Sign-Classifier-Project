@@ -132,6 +132,8 @@ Validation Set Distribution
 
 As a first step, I decided to convert the images to grayscale because the color does not help the sign recognition based on my experiment. Here the corresponding examples of traffic sign images before and after grayscaling.
 
+The examples of RGB images are,
+
 ![alt text][rgb_set]
 
 The corresponding grayscale images are shown as follows, 
