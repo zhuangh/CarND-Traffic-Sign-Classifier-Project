@@ -40,7 +40,7 @@ docker run -it --rm -p 8888:8888 -v `pwd`:/src udacity/carnd-term1-starter-kit
 
 GPU 
 ```sh
-sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  ttf_py3_cv2 
+sudo nvidia-docker run -v `pwd`:/notebooks -it --rm -p 8888:8888  tf_py3_cv2 
 ```
 
 ---
@@ -104,7 +104,7 @@ signs data set:
 
 * The size of the training set is 34799.
 * The size of the validation set is 4410.
-* The size of thetest set is 12630.
+* The size of the test set is 12630.
 * The shape of a traffic sign image is (32, 32, 3).
 * The number of unique classes/labels in the data set is 43.
 
@@ -215,10 +215,10 @@ Here are the configuration and the accuracy performance I record the trials.
 
 | Configuration			        |     Performance        					| 
 |:---------------------:|:---------------------------------------------:|
-| Dropout's keep prob = 0.7 + Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
-| Dropout's keep prob = 0.5 + Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
-| Dropout's keep prob = 0.5 + Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
-| Dropout's keep prob = 0.5 + Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
+| Dropout's keep prob=0.7 + Grayscale Data Sets | Train Accuracy = 0.99833, Validation Accuracy = 0.94467, Test Accuracy = 0.92835|
+| Dropout's keep prob=0.5 + Grayscale Data Sets | Train Accuracy = 0.99747, Validation Accuracy = 0.96054, Test Accuracy = 0.94125|
+| Dropout's keep prob=0.5 + Normalized Grayscale Data Sets | Train Accuracy = 0.99974, Validation Accuracy = 0.97483, Test Accuracy = 0.95408|
+| Dropout's keep prob=0.5 + Normalized Grayscale Augmented Data Sets | Train Accuracy = 0.99976, Validation Accuracy = 0.96122, Test Accuracy = 0.95202|
 
 The training performance figure is attached.
 
