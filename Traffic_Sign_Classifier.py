@@ -684,6 +684,30 @@ for i in range(len(web_images)):
     axes2.tick_params(labelleft='off', labelright='on')
 
 
+# In[ ]:
+
+
+# Get the prediction of the test set
+with tf.Session() as sess:
+    saver.restore(sess, './lenet')
+    y_pred = sess.run(prediction, feed_dict={x: X_test, y: y_test, keep_prob: 1.0})
+
+
+# In[69]:
+
+
+import seaborn as sn
+from sklearn import metrics
+
+print("Precision", metrics.precision_score(y_test, y_pred, average='macro'))
+print("Recall", metrics.recall_score(y_test, y_pred, average='micro'))
+cf_mat =  metrics.confusion_matrix(y_test, y_pred)
+
+print('Confusion matrix')
+plt.figure(figsize=(20,20))
+sn.heatmap(cf_mat, annot=True)
+
+
 # ### Project Writeup
 # 
 # Once you have completed the code implementation, document your results in a project writeup using this [template](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/writeup_template.md) as a guide. The writeup can be in a markdown or pdf file. 

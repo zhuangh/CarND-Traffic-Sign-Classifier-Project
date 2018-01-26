@@ -151,177 +151,7 @@ I decided to generate additional data because I found an mispredicted example fr
 ![alt text][scaled4]
 
 Augmented train set has the sample distribution as
-![alt text][aug_set_dist]
-label  0 (0, b'Speed limit (20km/h)')  sample count  180
-
-label  1 (1, b'Speed limit (30km/h)')  sample count  1980
-
-label  2 (2, b'Speed limit (50km/h)')  sample count  2010
-
-label  3 (3, b'Speed limit (60km/h)')  sample count  1260
-
-label  4 (4, b'Speed limit (70km/h)')  sample count  1770
-
-label  5 (5, b'Speed limit (80km/h)')  sample count  1650
-
-label  6 (6, b'End of speed limit (')  sample count  360
-
-label  7 (7, b'Speed limit (100km/h')  sample count  1290
-
-label  8 (8, b'Speed limit (120km/h')  sample count  1260
-
-label  9 (9, b'No passing')  sample count  1320
-
-label  10 (10, b'No passing for vehic')  sample count  1800
-
-label  11 (11, b'Right-of-way at the ')  sample count  1170
-
-label  12 (12, b'Priority road')  sample count  1890
-
-label  13 (13, b'Yield')  sample count  1920
-
-label  14 (14, b'Stop')  sample count  690
-
-label  15 (15, b'No vehicles')  sample count  540
-
-label  16 (16, b'Vehicles over 3.5 me')  sample count  360
-
-label  17 (17, b'No entry')  sample count  990
-
-label  18 (18, b'General caution')  sample count  1080
-
-label  19 (19, b'Dangerous curve to t')  sample count  180
-
-label  20 (20, b'Dangerous curve to t')  sample count  300
-
-label  21 (21, b'Double curve')  sample count  270
-
-label  22 (22, b'Bumpy road')  sample count  330
-
-label  23 (23, b'Slippery road')  sample count  450
-
-label  24 (24, b'Road narrows on the ')  sample count  240
-
-label  25 (25, b'Road work')  sample count  1350
-
-label  26 (26, b'Traffic signals')  sample count  540
-
-label  27 (27, b'Pedestrians')  sample count  210
-
-label  28 (28, b'Children crossing')  sample count  480
-
-label  29 (29, b'Bicycles crossing')  sample count  240
-
-label  30 (30, b'Beware of ice/snow')  sample count  390
-
-label  31 (31, b'Wild animals crossin')  sample count  690
-
-label  32 (32, b'End of all speed and')  sample count  210
-
-label  33 (33, b'Turn right ahead')  sample count  599
-
-label  34 (34, b'Turn left ahead')  sample count  360
-
-label  35 (35, b'Ahead only')  sample count  1080
-
-label  36 (36, b'Go straight or right')  sample count  330
-
-label  37 (37, b'Go straight or left')  sample count  180
-
-label  38 (38, b'Keep right')  sample count  1860
-
-label  39 (39, b'Keep left')  sample count  270
-
-label  40 (40, b'Roundabout mandatory')  sample count  300
-
-label  41 (41, b'End of no passing')  sample count  210
-
-label  42 (42, b'End of no passing by')  sample count  210
-label  0 (0, b'Speed limit (20km/h)')  sample count  900
-
-label  1 (1, b'Speed limit (30km/h)')  sample count  9900
-
-label  2 (2, b'Speed limit (50km/h)')  sample count  10050
-
-label  3 (3, b'Speed limit (60km/h)')  sample count  6300
-
-label  4 (4, b'Speed limit (70km/h)')  sample count  8850
-
-label  5 (5, b'Speed limit (80km/h)')  sample count  8250
-
-label  6 (6, b'End of speed limit (')  sample count  1800
-
-label  7 (7, b'Speed limit (100km/h')  sample count  6450
-
-label  8 (8, b'Speed limit (120km/h')  sample count  6300
-
-label  9 (9, b'No passing')  sample count  6600
-
-label  10 (10, b'No passing for vehic')  sample count  9000
-
-label  11 (11, b'Right-of-way at the ')  sample count  5850
-
-label  12 (12, b'Priority road')  sample count  9450
-
-label  13 (13, b'Yield')  sample count  9600
-
-label  14 (14, b'Stop')  sample count  3450
-
-label  15 (15, b'No vehicles')  sample count  2700
-
-label  16 (16, b'Vehicles over 3.5 me')  sample count  1800
-
-label  17 (17, b'No entry')  sample count  4950
-
-label  18 (18, b'General caution')  sample count  5400
-
-label  19 (19, b'Dangerous curve to t')  sample count  900
-
-label  20 (20, b'Dangerous curve to t')  sample count  1500
-
-label  21 (21, b'Double curve')  sample count  1350
-
-label  22 (22, b'Bumpy road')  sample count  1650
-
-label  23 (23, b'Slippery road')  sample count  2250
-
-label  24 (24, b'Road narrows on the ')  sample count  1200
-
-label  25 (25, b'Road work')  sample count  6750
-
-label  26 (26, b'Traffic signals')  sample count  2700
-
-label  27 (27, b'Pedestrians')  sample count  1050
-
-label  28 (28, b'Children crossing')  sample count  2400
-
-label  29 (29, b'Bicycles crossing')  sample count  1200
-
-label  30 (30, b'Beware of ice/snow')  sample count  1950
-
-label  31 (31, b'Wild animals crossin')  sample count  3450
-
-label  32 (32, b'End of all speed and')  sample count  1050
-
-label  33 (33, b'Turn right ahead')  sample count  2995
-
-label  34 (34, b'Turn left ahead')  sample count  1800
-
-label  35 (35, b'Ahead only')  sample count  5400
-
-label  36 (36, b'Go straight or right')  sample count  1650
-
-label  37 (37, b'Go straight or left')  sample count  900
-
-label  38 (38, b'Keep right')  sample count  9300
-
-label  39 (39, b'Keep left')  sample count  1350
-
-label  40 (40, b'Roundabout mandatory')  sample count  1500
-
-label  41 (41, b'End of no passing')  sample count  1050
-
-label  42 (42, b'End of no passing by')  sample count  1050
+![alt text][aug_set_dist] 
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -400,14 +230,14 @@ Answer: In terms of achitecture, I added two dropout layers after fully-connecte
 
 Here are five German traffic signs that I found on the web:
 
-
-
 ![alt text][all_news]
 
 This is wrong prediction when we use unaugmented data set. 
+
 ![alt text][new2].
 
 After adding the generated data. 
+
 ![alt text][new2_new].
 
  
