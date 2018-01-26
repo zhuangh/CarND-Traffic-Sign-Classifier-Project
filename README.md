@@ -261,11 +261,11 @@ Here are five German traffic signs that I found on the web:
 
 This is the wrong prediction without the augmented data set. 
 
-![alt text][new2].
+![alt text|140%][new2]
 
 After adding the generated data. 
 
-![alt text][new2_new].
+![alt text][new2_new]
 
  
 
