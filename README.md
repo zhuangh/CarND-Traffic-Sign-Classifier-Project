@@ -163,6 +163,9 @@ Augmented train set has the sample distribution as
 
 ![alt text][aug_set_dist] 
 
+Compared to the original distribution of train set.
+
+![Train Set][image_train]
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -219,26 +222,32 @@ Here are the configuration and the accuracy performance I record the trials.
 
 The training performance figure is attached.
 
-
 ![alt text][perm]
 
 #### Iterative approach was chosen
 
 * What was the first architecture that was tried and why was it chosen?
+
 Answer: I started with LeNet since the lecture mentioned it has pretty good performance in this kind of task.
+
 ![alt text][lenet]
 
 * What were some problems with the initial architecture?
+
 Answer: The accuracy is not high enough, only around 89% for the test set.
 
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-Answer: I increased the filter depth to capture more pattern information from the inputs. I added dropout for the fully-connected layers to avoid the overfitting.
+* How was the architecture adjusted and why was it adjusted? 
+
+Answer: 
+
+I increased the filter depth to capture more pattern information from the inputs. 
+
+I added dropout for the fully-connected layers to avoid the overfitting.
+
 * Which parameters were tuned? How were they adjusted and why?
-Answer: Dropout's keep probability. I set 0.7 then decreased to 0.5. Check the Configuration and Performance Table table I added above. 
 
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-Answer: In terms of architecture, I added two dropout layers after fully-connected layers respectively. 
-
+Answer: I tuned the Dropout's keep probability. I set 0.7 then decreased it to 0.5. Check the Configuration and Performance Table table I added above. 
+ 
 
 
 ### Test a Model on New Images
@@ -321,4 +330,5 @@ The confusion matrix of the model
 * Train the IJCNN'11 [paper](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) mentioned.
 
 * Visualization of the neural network's state. 
+
 
